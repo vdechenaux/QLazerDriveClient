@@ -71,5 +71,29 @@ void QLazerDriveClient::handlePacket(QLazerDrivePacket &packet)
 
             break;
         }
+        case QLazerDrivePacket::ReceiveLeaderBoardRank: {
+            quint16 playerId, rank;
+            packet >> playerId >> rank;
+
+            emit leaderBoardRankChanged(playerId, rank);
+            break;
+        }
+        case QLazerDrivePacket::ReceiveLeaderBoardScore: {
+            quint16 playerId, score;
+            packet >> playerId >> score;
+
+            emit leaderBoardScoreChanged(playerId, score);
+            break;
+        }
+        case QLazerDrivePacket::ReceiveLeaderBoardInit: {
+            quint16 playerId, score, rank, tmp;
+            packet >> playerId;
+            packet >> score >> rank;
+            packet >> tmp >> tmp >> tmp; // 3 x 2 bytes unknown, maybe R G B
+            QString name = packet.readString();
+
+            emit leaderBoardLineReceived(playerId, score, rank, name);
+            break;
+        }
     }
 }

@@ -21,8 +21,12 @@ public:
 
     enum Opcode
     {
+        SendHello               = 20,
+
         ReceiveHello            = 19,
-        SendHello               = 20
+        ReceiveLeaderBoardInit  = 25,
+        ReceiveLeaderBoardScore = 26,
+        ReceiveLeaderBoardRank  = 27
     };
 };
 

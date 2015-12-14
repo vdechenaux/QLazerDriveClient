@@ -20,6 +20,9 @@ public:
 
 signals:
     void connected(QLazerDrivePlayer player);
+    void leaderBoardRankChanged(uint playerId, uint rank);
+    void leaderBoardScoreChanged(uint playerId, uint score);
+    void leaderBoardLineReceived(uint playerId, uint score, uint rank, QString name);
 private slots:
     void socketConnected();
     void socketBinaryMessageReceived(const QByteArray &packetData);
