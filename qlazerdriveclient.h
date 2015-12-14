@@ -4,6 +4,7 @@
 #include "qlazerdriveclient_global.h"
 #include <QObject>
 #include <QWebSocket>
+#include <QtMath>
 #include "qlazerdrivepacket.h"
 #include "qlazerdriveplayer.h"
 
@@ -23,6 +24,7 @@ signals:
     void leaderBoardRankChanged(uint playerId, uint rank);
     void leaderBoardScoreChanged(uint playerId, uint score);
     void leaderBoardLineReceived(uint playerId, uint score, uint rank, QString name);
+    void playerMoved(uint playerId, uint x, uint y, qreal angle);
 private slots:
     void socketConnected();
     void socketBinaryMessageReceived(const QByteArray &packetData);

@@ -24,6 +24,7 @@ public:
         SendHello               = 20,
 
         ReceiveHello            = 19,
+        ReceivePlayerMovement   = 21,
         ReceiveLeaderBoardInit  = 25,
         ReceiveLeaderBoardScore = 26,
         ReceiveLeaderBoardRank  = 27

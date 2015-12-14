@@ -95,5 +95,13 @@ void QLazerDriveClient::handlePacket(QLazerDrivePacket &packet)
             emit leaderBoardLineReceived(playerId, score, rank, name);
             break;
         }
+        case QLazerDrivePacket::ReceivePlayerMovement: {
+            quint16 playerId, x, y, angle;
+            packet >> playerId >> x >> y >> angle;
+            qreal angleDegrees = qMin(angle / (2000 * M_PI) * 360, 360.0);
+
+            emit playerMoved(playerId, x, y, angleDegrees);
+            break;
+        }
     }
 }
