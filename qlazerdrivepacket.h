@@ -27,7 +27,8 @@ public:
         ReceivePlayerMovement   = 21,
         ReceiveLeaderBoardInit  = 25,
         ReceiveLeaderBoardScore = 26,
-        ReceiveLeaderBoardRank  = 27
+        ReceiveLeaderBoardRank  = 27,
+        ReceivePlayerDead       = 32
     };
 };
 

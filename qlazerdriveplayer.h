@@ -24,6 +24,14 @@ public:
     void setG(const uint &g);
     uint b() const;
     void setB(const uint &b);
+
+    enum DeathTypes
+    {
+        Suicide,
+        Crash,
+        Kill,
+        Wall
+    };
 };
 
 #endif // QLAZERDRIVEPLAYER_H

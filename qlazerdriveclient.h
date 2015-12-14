@@ -25,6 +25,7 @@ signals:
     void leaderBoardScoreChanged(uint playerId, uint score);
     void leaderBoardLineReceived(uint playerId, uint score, uint rank, QString name);
     void playerMoved(uint playerId, uint x, uint y, qreal angle);
+    void playerDead(uint playerId, uint killerId, QLazerDrivePlayer::DeathTypes type, uint x, uint y, uint angle);
 private slots:
     void socketConnected();
     void socketBinaryMessageReceived(const QByteArray &packetData);

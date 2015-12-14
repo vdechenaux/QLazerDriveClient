@@ -103,5 +103,23 @@ void QLazerDriveClient::handlePacket(QLazerDrivePacket &packet)
             emit playerMoved(playerId, x, y, angleDegrees);
             break;
         }
+        case QLazerDrivePacket::ReceivePlayerDead: {
+            quint16 playerId, x, y, angle, killerId, isOldData;
+            packet >> playerId >> x >> y >> angle >> killerId >> isOldData;
+
+            if (killerId) {
+                if (killerId == playerId) {
+                    emit playerDead(playerId, killerId, QLazerDrivePlayer::Suicide, x, y, angle);
+                } else if (isOldData) {
+                    emit playerDead(playerId, killerId, QLazerDrivePlayer::Crash, x, y, angle);
+                } else {
+                    emit playerDead(playerId, killerId, QLazerDrivePlayer::Kill, x, y, angle);
+                }
+            } else {
+                emit playerDead(playerId, killerId, QLazerDrivePlayer::Wall, x, y, angle);
+            }
+
+            break;
+        }
     }
 }
