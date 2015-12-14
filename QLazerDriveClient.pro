@@ -4,6 +4,8 @@
 #
 #-------------------------------------------------
 
+QT       += websockets
+
 QT       -= gui
 
 TARGET = QLazerDriveClient
@@ -11,10 +13,15 @@ TEMPLATE = lib
 
 DEFINES += QLAZERDRIVECLIENT_LIBRARY
 
-SOURCES += qlazerdriveclient.cpp
+SOURCES += \
+    qlazerdriveclient.cpp \
+    qlazerdrivepacket.cpp \
+    qlazerdriveplayer.cpp
 
-HEADERS += qlazerdriveclient.h\
-        qlazerdriveclient_global.h
+HEADERS += qlazerdriveclient_global.h \
+    qlazerdriveclient.h \
+    qlazerdrivepacket.h \
+    qlazerdriveplayer.h
 
 unix {
     target.path = /usr/lib
