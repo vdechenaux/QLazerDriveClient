@@ -29,6 +29,8 @@ signals:
     void playerDead(uint playerId, uint killerId, QLazerDrivePlayer::DeathTypes type, uint x, uint y, uint angle);
     void playerEnteredTheGame(QLazerDrivePlayer player, bool isMyself, bool isAlias);
     void playerLeftTheGame(QLazerDrivePlayer player, bool isAlias);
+    void existingPlayerInitialized(QLazerDrivePlayer player, uint x, uint y);
+    void playerCoordsInitialized(uint playerId, uint x, uint y, qreal angle);
 private slots:
     void socketConnected();
     void socketBinaryMessageReceived(const QByteArray &packetData);

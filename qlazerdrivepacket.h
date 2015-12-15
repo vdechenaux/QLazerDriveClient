@@ -23,6 +23,8 @@ public:
     {
         SendHello                   = 20,
 
+        ReceivePlayerInitExisting   = 1,
+        ReceivePlayerInitCoords     = 2,
         ReceiveAliasLeftTheGame     = 6,
         ReceivePlayerLeftTheGame    = 9,
         ReceiveHello                = 19,

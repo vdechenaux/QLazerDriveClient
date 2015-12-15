@@ -146,6 +146,28 @@ void QLazerDriveClient::handlePacket(QLazerDrivePacket &packet)
 
             break;
         }
+        case QLazerDrivePacket::ReceivePlayerInitExisting: {
+            // Sent only when the client (me) is entering the room, not while playing
+            // lastX and lastY are the last known coordinates of the player (If dead => death coords, If alive => current coords)
+            // Equivalent to ReceiveOtherEnterTheGame + ReceivePlayerInitCoords
+            quint16 playerId, r, g, b, lastX, lastY, tmp;
+            packet >> playerId >> lastX >> lastY >> r >> g >> b;
+            packet >> tmp >> tmp >> tmp >> tmp >> tmp >> tmp; // unknown
+            QString name = packet.readString();
+
+            QLazerDrivePlayer player(playerId, name, r, g, b);
+            emit existingPlayerInitialized(player, lastX, lastY);
+            break;
+        }
+        case QLazerDrivePacket::ReceivePlayerInitCoords: {
+            // Not sent if ReceivePlayerInit was received for this playerId
+            // But if he dies and comes back, this packet will be sent, but not ReceivePlayerInit
+            quint16 playerId, x, y, angle;
+            packet >> playerId >> x >> y >> angle;
+
+            emit playerCoordsInitialized(playerId, x, y, decodeAngle(angle));
+            break;
+        }
     }
 }
 
