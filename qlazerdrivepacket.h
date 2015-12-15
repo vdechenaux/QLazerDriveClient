@@ -21,14 +21,17 @@ public:
 
     enum Opcode
     {
-        SendHello               = 20,
+        SendHello                   = 20,
 
-        ReceiveHello            = 19,
-        ReceivePlayerMovement   = 21,
-        ReceiveLeaderBoardInit  = 25,
-        ReceiveLeaderBoardScore = 26,
-        ReceiveLeaderBoardRank  = 27,
-        ReceivePlayerDead       = 32
+        ReceiveHello                = 19,
+        ReceivePlayerMovement       = 21,
+        ReceiveLeaderBoardInit      = 25,
+        ReceiveLeaderBoardScore     = 26,
+        ReceiveLeaderBoardRank      = 27,
+        ReceiveAliasEnterTheGame    = 28,
+        ReceivePlayerDead           = 32,
+        ReceiveOtherEnterTheGame    = 40,
+        ReceiveMyselfEnterTheGame   = 41,
     };
 };
 

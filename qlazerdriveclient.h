@@ -12,7 +12,7 @@ class QLAZERDRIVECLIENTSHARED_EXPORT QLazerDriveClient : public QObject
 {
     Q_OBJECT
     QWebSocket *m_pSocket;
-    QString m_desiredUsername;
+    QString m_desiredUsername, m_assignedUsername;
     void handlePacket(QLazerDrivePacket &packet);
 public:
     explicit QLazerDriveClient(QObject *parent = 0);
@@ -26,6 +26,7 @@ signals:
     void leaderBoardLineReceived(uint playerId, uint score, uint rank, QString name);
     void playerMoved(uint playerId, uint x, uint y, qreal angle);
     void playerDead(uint playerId, uint killerId, QLazerDrivePlayer::DeathTypes type, uint x, uint y, uint angle);
+    void playerEnteredTheGame(QLazerDrivePlayer player, bool isMyself, bool isAlias);
 private slots:
     void socketConnected();
     void socketBinaryMessageReceived(const QByteArray &packetData);

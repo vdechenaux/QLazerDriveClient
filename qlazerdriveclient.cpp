@@ -64,9 +64,9 @@ void QLazerDriveClient::handlePacket(QLazerDrivePacket &packet)
         case QLazerDrivePacket::ReceiveHello: {
             quint16 playerId, r, g, b;
             packet >> playerId >> r >> g >> b;
-            QString name = packet.readString();
+            m_assignedUsername = packet.readString();
 
-            QLazerDrivePlayer player(playerId, name, r, g, b);
+            QLazerDrivePlayer player(playerId, m_assignedUsername, r, g, b);
             emit connected(player);
 
             break;
@@ -118,6 +118,20 @@ void QLazerDriveClient::handlePacket(QLazerDrivePacket &packet)
             } else {
                 emit playerDead(playerId, killerId, QLazerDrivePlayer::Wall, x, y, angle);
             }
+
+            break;
+        }
+        case QLazerDrivePacket::ReceiveMyselfEnterTheGame:
+        case QLazerDrivePacket::ReceiveOtherEnterTheGame:
+        case QLazerDrivePacket::ReceiveAliasEnterTheGame: {
+            quint16 playerId, r, g, b;
+            packet >> playerId >> r >> g >> b;
+            QString name = packet.readString();
+
+            QLazerDrivePlayer player(playerId, name, r, g, b);
+            bool isMyself = name == m_assignedUsername;
+            bool isAlias = opcode == QLazerDrivePacket::ReceiveAliasEnterTheGame;
+            emit playerEnteredTheGame(player, isMyself, isAlias);
 
             break;
         }
