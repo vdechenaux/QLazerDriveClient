@@ -98,9 +98,8 @@ void QLazerDriveClient::handlePacket(QLazerDrivePacket &packet)
         case QLazerDrivePacket::ReceivePlayerMovement: {
             quint16 playerId, x, y, angle;
             packet >> playerId >> x >> y >> angle;
-            qreal angleDegrees = qMin(angle / (2000 * M_PI) * 360, 360.0);
 
-            emit playerMoved(playerId, x, y, angleDegrees);
+            emit playerMoved(playerId, x, y, decodeAngle(angle));
             break;
         }
         case QLazerDrivePacket::ReceivePlayerDead: {
@@ -109,14 +108,14 @@ void QLazerDriveClient::handlePacket(QLazerDrivePacket &packet)
 
             if (killerId) {
                 if (killerId == playerId) {
-                    emit playerDead(playerId, killerId, QLazerDrivePlayer::Suicide, x, y, angle);
+                    emit playerDead(playerId, killerId, QLazerDrivePlayer::Suicide, x, y, decodeAngle(angle));
                 } else if (isOldData) {
-                    emit playerDead(playerId, killerId, QLazerDrivePlayer::Crash, x, y, angle);
+                    emit playerDead(playerId, killerId, QLazerDrivePlayer::Crash, x, y, decodeAngle(angle));
                 } else {
-                    emit playerDead(playerId, killerId, QLazerDrivePlayer::Kill, x, y, angle);
+                    emit playerDead(playerId, killerId, QLazerDrivePlayer::Kill, x, y, decodeAngle(angle));
                 }
             } else {
-                emit playerDead(playerId, killerId, QLazerDrivePlayer::Wall, x, y, angle);
+                emit playerDead(playerId, killerId, QLazerDrivePlayer::Wall, x, y, decodeAngle(angle));
             }
 
             break;
@@ -148,4 +147,9 @@ void QLazerDriveClient::handlePacket(QLazerDrivePacket &packet)
             break;
         }
     }
+}
+
+qreal QLazerDriveClient::decodeAngle(uint angle)
+{
+    return qMin(angle / (2000 * M_PI) * 360, 360.0);
 }

@@ -14,6 +14,7 @@ class QLAZERDRIVECLIENTSHARED_EXPORT QLazerDriveClient : public QObject
     QWebSocket *m_pSocket;
     QString m_desiredUsername, m_assignedUsername;
     void handlePacket(QLazerDrivePacket &packet);
+    qreal decodeAngle(uint angle);
 public:
     explicit QLazerDriveClient(QObject *parent = 0);
     ~QLazerDriveClient();
