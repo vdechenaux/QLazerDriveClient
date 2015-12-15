@@ -10,6 +10,36 @@ QLazerDrivePlayer::QLazerDrivePlayer(const uint &id, const QString &name, const 
     m_score = score;
 }
 
+uint QLazerDrivePlayer::id() const
+{
+    return m_id;
+}
+
+void QLazerDrivePlayer::setId(const uint &id)
+{
+    m_id = id;
+}
+
+uint QLazerDrivePlayer::score() const
+{
+    return m_score;
+}
+
+void QLazerDrivePlayer::setScore(const uint &score)
+{
+    m_score = score;
+}
+
+QString QLazerDrivePlayer::name() const
+{
+    return m_name;
+}
+
+void QLazerDrivePlayer::setName(const QString &name)
+{
+    m_name = name;
+}
+
 uint QLazerDrivePlayer::r() const
 {
     return m_r;
