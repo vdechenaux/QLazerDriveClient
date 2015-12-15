@@ -135,5 +135,17 @@ void QLazerDriveClient::handlePacket(QLazerDrivePacket &packet)
 
             break;
         }
+        case QLazerDrivePacket::ReceivePlayerLeftTheGame:
+        case QLazerDrivePacket::ReceiveAliasLeftTheGame: {
+            quint16 playerId;
+            packet >> playerId;
+            QString name = packet.readString();
+
+            QLazerDrivePlayer player(playerId, name);
+            bool isAlias = opcode == QLazerDrivePacket::ReceiveAliasLeftTheGame;
+            emit playerLeftTheGame(player, isAlias);
+
+            break;
+        }
     }
 }

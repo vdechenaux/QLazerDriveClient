@@ -23,6 +23,8 @@ public:
     {
         SendHello                   = 20,
 
+        ReceiveAliasLeftTheGame     = 6,
+        ReceivePlayerLeftTheGame    = 9,
         ReceiveHello                = 19,
         ReceivePlayerMovement       = 21,
         ReceiveLeaderBoardInit      = 25,
