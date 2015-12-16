@@ -1,5 +1,7 @@
 # QLazerDriveClient
 
+[![Build Status](https://travis-ci.org/vdechenaux/QLazerDriveClient?branch=master)](https://travis-ci.org/vdechenaux/QLazerDriveClient)
+
 ## Integration example
 
 To see the library in action, you can take a look at a project that I made: [lazerdrive-leaderboard-sniffer](https://github.com/vdechenaux/lazerdrive-leaderboard-sniffer)
