@@ -1,6 +1,6 @@
 # QLazerDriveClient
 
-[![Build Status](https://travis-ci.org/vdechenaux/QLazerDriveClient?branch=master)](https://travis-ci.org/vdechenaux/QLazerDriveClient)
+[![Build Status](https://travis-ci.org/vdechenaux/QLazerDriveClient.svg?branch=master)](https://travis-ci.org/vdechenaux/QLazerDriveClient)
 
 ## Integration example
 
