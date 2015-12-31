@@ -169,6 +169,11 @@ void QLazerDriveClient::handlePacket(QLazerDrivePacket &packet)
             emit playerCoordsInitialized(playerId, x, y, decodeAngle(angle));
             break;
         }
+        case QLazerDrivePacket::ReceivePLayerPressKey: {
+            quint16 playerId, keyFlag;
+            packet >> playerId >> keyFlag;
+            emit playerPressedKey(playerId, (QLazerDrivePlayer::KeyFlags)keyFlag);
+        }
     }
 }
 

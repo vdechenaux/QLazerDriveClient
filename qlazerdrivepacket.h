@@ -27,6 +27,7 @@ public:
         ReceivePlayerInitCoords     = 2,
         ReceiveAliasLeftTheGame     = 6,
         ReceivePlayerLeftTheGame    = 9,
+        ReceivePLayerPressKey       = 18,
         ReceiveHello                = 19,
         ReceivePlayerMovement       = 21,
         ReceiveLeaderBoardInit      = 25,

@@ -32,6 +32,13 @@ public:
         Kill,
         Wall
     };
+
+    enum KeyFlags
+    {
+        NothingPressed,
+        RightPressed,
+        LeftPressed = 0xffff
+    };
 };
 
 #endif // QLAZERDRIVEPLAYER_H

@@ -31,6 +31,7 @@ signals:
     void playerLeftTheGame(QLazerDrivePlayer player, bool isAlias);
     void existingPlayerInitialized(QLazerDrivePlayer player, uint x, uint y);
     void playerCoordsInitialized(uint playerId, uint x, uint y, qreal angle);
+    void playerPressedKey(uint playerId, QLazerDrivePlayer::KeyFlags key);
 private slots:
     void socketConnected();
     void socketBinaryMessageReceived(const QByteArray &packetData);
