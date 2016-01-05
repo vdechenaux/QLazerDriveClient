@@ -193,6 +193,9 @@ void QLazerDriveClient::handlePacket(QLazerDrivePacket &packet)
             emit playerReversed(playerId, isReversed);
             break;
         }
+        case QLazerDrivePacket::ReceiveEraser: {
+            emit mapErased();
+        }
     }
 }
 
