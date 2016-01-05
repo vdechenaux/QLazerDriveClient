@@ -196,6 +196,18 @@ void QLazerDriveClient::handlePacket(QLazerDrivePacket &packet)
         case QLazerDrivePacket::ReceiveEraser: {
             emit mapErased();
         }
+        case QLazerDrivePacket::ReceivePlayerSpeed: {
+            quint16 playerId, speed;
+            packet >> playerId >> speed;
+            emit playerSpeedChanged(playerId, speed);
+            break;
+        }
+        case QLazerDrivePacket::ReceivePlayerThickness: {
+            quint16 playerId, thickness;
+            packet >> playerId >> thickness;
+            emit playerThicknessChanged(playerId, thickness);
+            break;
+        }
     }
 }
 

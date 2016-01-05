@@ -36,6 +36,8 @@ signals:
     void playerImuneChanged(uint playerId, bool isImune);
     void playerReversed(uint playerId, bool isReversed);
     void mapErased();
+    void playerSpeedChanged(uint playerId, uint speed);
+    void playerThicknessChanged(uint playerId, uint thickness);
 private slots:
     void socketConnected();
     void socketBinaryMessageReceived(const QByteArray &packetData);

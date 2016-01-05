@@ -35,6 +35,8 @@ public:
         ReceiveLeaderBoardScore     = 26,
         ReceiveLeaderBoardRank      = 27,
         ReceiveAliasEnterTheGame    = 28,
+        ReceivePlayerSpeed          = 30,
+        ReceivePlayerThickness      = 31,
         ReceivePlayerDead           = 32,
         ReceivePlayerPrintChanged   = 35,
         ReceivePlayerImuneChanged   = 36,
