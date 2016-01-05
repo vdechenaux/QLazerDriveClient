@@ -173,6 +173,25 @@ void QLazerDriveClient::handlePacket(QLazerDrivePacket &packet)
             quint16 playerId, keyFlag;
             packet >> playerId >> keyFlag;
             emit playerPressedKey(playerId, (QLazerDrivePlayer::KeyFlags)keyFlag);
+            break;
+        }
+        case QLazerDrivePacket::ReceivePlayerPrintChanged: {
+            quint16 playerId, isPrinting;
+            packet >> playerId >> isPrinting;
+            emit playerPrintChanged(playerId, isPrinting);
+            break;
+        }
+        case QLazerDrivePacket::ReceivePlayerImuneChanged: {
+            quint16 playerId, isImune;
+            packet >> playerId >> isImune;
+            emit playerImuneChanged(playerId, isImune);
+            break;
+        }
+        case QLazerDrivePacket::ReceivePlayerReversed: {
+            quint16 playerId, isReversed;
+            packet >> playerId >> isReversed;
+            emit playerReversed(playerId, isReversed);
+            break;
         }
     }
 }

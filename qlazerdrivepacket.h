@@ -35,6 +35,9 @@ public:
         ReceiveLeaderBoardRank      = 27,
         ReceiveAliasEnterTheGame    = 28,
         ReceivePlayerDead           = 32,
+        ReceivePlayerPrintChanged   = 35,
+        ReceivePlayerImuneChanged   = 36,
+        ReceivePlayerReversed       = 37,
         ReceiveOtherEnterTheGame    = 40,
         ReceiveMyselfEnterTheGame   = 41,
     };

@@ -32,6 +32,9 @@ signals:
     void existingPlayerInitialized(QLazerDrivePlayer player, uint x, uint y);
     void playerCoordsInitialized(uint playerId, uint x, uint y, qreal angle);
     void playerPressedKey(uint playerId, QLazerDrivePlayer::KeyFlags key);
+    void playerPrintChanged(uint playerId, bool isPrinting);
+    void playerImuneChanged(uint playerId, bool isImune);
+    void playerReversed(uint playerId, bool isReversed);
 private slots:
     void socketConnected();
     void socketBinaryMessageReceived(const QByteArray &packetData);
