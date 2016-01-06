@@ -23,6 +23,7 @@ public:
     {
         SendHello                   = 20,
 
+        ReceivePlayerTrace          = 0,
         ReceivePlayerInitExisting   = 1,
         ReceivePlayerInitCoords     = 2,
         ReceiveAliasLeftTheGame     = 6,

@@ -226,6 +226,12 @@ void QLazerDriveClient::handlePacket(QLazerDrivePacket &packet)
             emit ping(latency);
             break;
         }
+        case QLazerDrivePacket::ReceivePlayerTrace: {
+            quint16 x, y, angle, thickness, r, g, b, playerId;
+            packet >> x >> y >> angle >> thickness >> r >> g >> b >> playerId;
+            emit playerTraceInitialized(playerId, x, y, decodeAngle(angle*10), thickness, r, g, b);
+            break;
+        }
     }
 }
 
