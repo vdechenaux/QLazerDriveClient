@@ -26,6 +26,7 @@ public:
         ReceivePlayerInitExisting   = 1,
         ReceivePlayerInitCoords     = 2,
         ReceiveAliasLeftTheGame     = 6,
+        ReceivePing                 = 7,
         ReceivePlayerTookBonus      = 8,
         ReceivePlayerLeftTheGame    = 9,
         ReceiveEraser               = 15,

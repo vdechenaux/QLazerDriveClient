@@ -41,6 +41,7 @@ signals:
     void playerThicknessChanged(uint playerId, uint thickness);
     void bonusAppeared(QLazerDriveBonus bonus);
     void playerTookBonus(uint bonusId);
+    void ping(uint latency);
 private slots:
     void socketConnected();
     void socketBinaryMessageReceived(const QByteArray &packetData);

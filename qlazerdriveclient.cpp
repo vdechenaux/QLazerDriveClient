@@ -220,6 +220,12 @@ void QLazerDriveClient::handlePacket(QLazerDrivePacket &packet)
             emit bonusAppeared(QLazerDriveBonus(bonusId, x, y, (QLazerDriveBonus::Type)type));
             break;
         }
+        case QLazerDrivePacket::ReceivePing: {
+            quint16 latency;
+            packet >> latency;
+            emit ping(latency);
+            break;
+        }
     }
 }
 
