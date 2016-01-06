@@ -26,6 +26,7 @@ public:
         ReceivePlayerInitExisting   = 1,
         ReceivePlayerInitCoords     = 2,
         ReceiveAliasLeftTheGame     = 6,
+        ReceivePlayerTookBonus      = 8,
         ReceivePlayerLeftTheGame    = 9,
         ReceiveEraser               = 15,
         ReceivePLayerPressKey       = 18,
@@ -41,6 +42,7 @@ public:
         ReceivePlayerPrintChanged   = 35,
         ReceivePlayerImuneChanged   = 36,
         ReceivePlayerReversed       = 37,
+        ReceiveBonusAppeared        = 39,
         ReceiveOtherEnterTheGame    = 40,
         ReceiveMyselfEnterTheGame   = 41,
     };

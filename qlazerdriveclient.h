@@ -7,6 +7,7 @@
 #include <QtMath>
 #include "qlazerdrivepacket.h"
 #include "qlazerdriveplayer.h"
+#include "qlazerdrivebonus.h"
 
 class QLAZERDRIVECLIENTSHARED_EXPORT QLazerDriveClient : public QObject
 {
@@ -38,6 +39,8 @@ signals:
     void mapErased();
     void playerSpeedChanged(uint playerId, uint speed);
     void playerThicknessChanged(uint playerId, uint thickness);
+    void bonusAppeared(QLazerDriveBonus bonus);
+    void playerTookBonus(uint bonusId);
 private slots:
     void socketConnected();
     void socketBinaryMessageReceived(const QByteArray &packetData);

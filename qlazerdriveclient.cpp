@@ -208,6 +208,18 @@ void QLazerDriveClient::handlePacket(QLazerDrivePacket &packet)
             emit playerThicknessChanged(playerId, thickness);
             break;
         }
+        case QLazerDrivePacket::ReceivePlayerTookBonus: {
+            quint16 bonusId;
+            packet >> bonusId;
+            emit playerTookBonus(bonusId);
+            break;
+        }
+        case QLazerDrivePacket::ReceiveBonusAppeared: {
+        quint16 bonusId, type, x, y;
+            packet >> bonusId >> type >> x >> y;
+            emit bonusAppeared(QLazerDriveBonus(bonusId, x, y, (QLazerDriveBonus::Type)type));
+            break;
+        }
     }
 }
 
