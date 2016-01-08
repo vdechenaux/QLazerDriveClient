@@ -25,6 +25,7 @@ public:
         SendNextColor               = 17,
         SendHello                   = 20,
         SendChangeUsername          = 23,
+        SendPressArrow              = 24,
 
         ReceivePlayerTrace          = 0,
         ReceivePlayerInitExisting   = 1,

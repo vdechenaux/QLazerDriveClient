@@ -51,6 +51,8 @@ public slots:
     void connectToServer(const QString &host, const QString &username = QString());
     void enterTheGame(const QString &username = QString());
     void nextColor();
+    void pressArrow(QLazerDrivePlayer::KeyFlags key);
+    void releaseArrow();
 };
 
 #endif // QLAZERDRIVECLIENT_H

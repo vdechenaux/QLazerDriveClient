@@ -51,6 +51,19 @@ void QLazerDriveClient::nextColor()
     packet.sendTo(m_pSocket);
 }
 
+void QLazerDriveClient::pressArrow(QLazerDrivePlayer::KeyFlags key)
+{
+    QLazerDrivePacket packet;
+    packet << (quint16)QLazerDrivePacket::SendPressArrow;
+    packet << (quint16)key;
+    packet.sendTo(m_pSocket);
+}
+
+void QLazerDriveClient::releaseArrow()
+{
+    pressArrow(QLazerDrivePlayer::NothingPressed);
+}
+
 void QLazerDriveClient::socketConnected()
 {
     QLazerDrivePacket packet;
