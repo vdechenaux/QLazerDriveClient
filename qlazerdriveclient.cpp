@@ -64,6 +64,13 @@ void QLazerDriveClient::releaseArrow()
     pressArrow(QLazerDrivePlayer::NothingPressed);
 }
 
+void QLazerDriveClient::revive()
+{
+    QLazerDrivePacket packet;
+    packet << (quint16)QLazerDrivePacket::SendRevive;
+    packet.sendTo(m_pSocket);
+}
+
 void QLazerDriveClient::socketConnected()
 {
     QLazerDrivePacket packet;

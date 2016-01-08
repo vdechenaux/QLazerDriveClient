@@ -21,6 +21,7 @@ public:
 
     enum Opcode
     {
+        SendRevive                  = 12,
         SendEnterTheGame            = 16,
         SendNextColor               = 17,
         SendHello                   = 20,

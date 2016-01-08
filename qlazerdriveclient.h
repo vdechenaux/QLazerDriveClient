@@ -53,6 +53,7 @@ public slots:
     void nextColor();
     void pressArrow(QLazerDrivePlayer::KeyFlags key);
     void releaseArrow();
+    void revive();
 };
 
 #endif // QLAZERDRIVECLIENT_H
