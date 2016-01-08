@@ -21,7 +21,10 @@ public:
 
     enum Opcode
     {
+        SendEnterTheGame            = 16,
+        SendNextColor               = 17,
         SendHello                   = 20,
+        SendChangeUsername          = 23,
 
         ReceivePlayerTrace          = 0,
         ReceivePlayerInitExisting   = 1,
@@ -41,6 +44,7 @@ public:
         ReceivePlayerSpeed          = 30,
         ReceivePlayerThickness      = 31,
         ReceivePlayerDead           = 32,
+        ReceiveNextColor            = 33,
         ReceivePlayerPrintChanged   = 35,
         ReceivePlayerImuneChanged   = 36,
         ReceivePlayerReversed       = 37,

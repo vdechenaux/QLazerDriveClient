@@ -3,6 +3,7 @@
 
 QLazerDriveClient::QLazerDriveClient(QObject *parent) : QObject(parent)
 {
+    m_preLoginSequence = 1;
     m_pSocket = new QWebSocket();
     connect(m_pSocket, SIGNAL(connected()), this, SLOT(socketConnected()));
     connect(m_pSocket, SIGNAL(binaryMessageReceived(QByteArray)), this, SLOT(socketBinaryMessageReceived(QByteArray)));
@@ -25,11 +26,36 @@ void QLazerDriveClient::connectToServer(const QString &host, const QString &user
     m_pSocket->open(url);
 }
 
+void QLazerDriveClient::enterTheGame(const QString &username)
+{
+    QLazerDrivePacket packet;
+
+    if (!username.isEmpty()) {
+        packet << (quint16)QLazerDrivePacket::SendChangeUsername;
+        packet << (quint16)m_preLoginSequence++;
+        packet.writeString(username);
+        packet.sendTo(m_pSocket);
+        packet.clear();
+    }
+
+    packet << (quint16)QLazerDrivePacket::SendEnterTheGame;
+    packet << (quint16)m_preLoginSequence++;
+    packet.sendTo(m_pSocket);
+}
+
+void QLazerDriveClient::nextColor()
+{
+    QLazerDrivePacket packet;
+    packet << (quint16)QLazerDrivePacket::SendNextColor;
+    packet << (quint16)m_preLoginSequence++;
+    packet.sendTo(m_pSocket);
+}
+
 void QLazerDriveClient::socketConnected()
 {
     QLazerDrivePacket packet;
 
-    // Username packet
+    // Hello packet
     packet << (quint16)QLazerDrivePacket::SendHello;
     packet << (quint16)0x00;
     packet << (quint16)0x00; // r
@@ -64,9 +90,9 @@ void QLazerDriveClient::handlePacket(QLazerDrivePacket &packet)
         case QLazerDrivePacket::ReceiveHello: {
             quint16 playerId, r, g, b;
             packet >> playerId >> r >> g >> b;
-            m_assignedUsername = packet.readString();
+            QString username = packet.readString();
 
-            QLazerDrivePlayer player(playerId, m_assignedUsername, r, g, b);
+            QLazerDrivePlayer player(playerId, username, r, g, b);
             emit connected(player);
 
             break;
@@ -129,7 +155,7 @@ void QLazerDriveClient::handlePacket(QLazerDrivePacket &packet)
             QString name = packet.readString();
 
             QLazerDrivePlayer player(playerId, name, r, g, b);
-            bool isMyself = name == m_assignedUsername;
+            bool isMyself = opcode == QLazerDrivePacket::ReceiveMyselfEnterTheGame;
             bool isAlias = opcode == QLazerDrivePacket::ReceiveAliasEnterTheGame;
             emit playerEnteredTheGame(player, isMyself, isAlias);
 
@@ -231,6 +257,11 @@ void QLazerDriveClient::handlePacket(QLazerDrivePacket &packet)
             packet >> x >> y >> angle >> thickness >> r >> g >> b >> playerId;
             emit playerTraceInitialized(playerId, x, y, decodeAngle(angle*10), thickness, r, g, b);
             break;
+        }
+        case QLazerDrivePacket::ReceiveNextColor: {
+            quint16 colorId, r, g, b;
+            packet >> colorId >> r >> g >> b;
+            emit nextColorReceived(r, g, b);
         }
     }
 }

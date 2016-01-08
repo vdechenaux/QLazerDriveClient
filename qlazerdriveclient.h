@@ -13,13 +13,13 @@ class QLAZERDRIVECLIENTSHARED_EXPORT QLazerDriveClient : public QObject
 {
     Q_OBJECT
     QWebSocket *m_pSocket;
-    QString m_desiredUsername, m_assignedUsername;
+    QString m_desiredUsername;
+    uint m_preLoginSequence;
     void handlePacket(QLazerDrivePacket &packet);
     qreal decodeAngle(uint angle);
 public:
     explicit QLazerDriveClient(QObject *parent = 0);
     ~QLazerDriveClient();
-    void connectToServer(const QString &host, const QString &username = QString());
 
 signals:
     void connected(QLazerDrivePlayer player);
@@ -43,9 +43,14 @@ signals:
     void playerTookBonus(uint bonusId);
     void ping(uint latency);
     void playerTraceInitialized(uint playerId, uint x, uint y, uint angle, uint thickness, uint r, uint g, uint b);
+    void nextColorReceived(uint r, uint g, uint b);
 private slots:
     void socketConnected();
     void socketBinaryMessageReceived(const QByteArray &packetData);
+public slots:
+    void connectToServer(const QString &host, const QString &username = QString());
+    void enterTheGame(const QString &username = QString());
+    void nextColor();
 };
 
 #endif // QLAZERDRIVECLIENT_H
